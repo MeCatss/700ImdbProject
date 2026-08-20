@@ -1,7 +1,7 @@
-function Charts() {
-    <section>
-        <h1>Charts</h1>
-    </section>
+const Charts = () => {
+    return (
+            <h1>Charts</h1>
+    )
 }
 
 export default Charts

@@ -1,25 +1,29 @@
-import { useState } from 'react'
-import {Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 import Home from './pages/Home'
 import Charts from './pages/Charts'
 import MovieDetail from './pages/MovieDetail'
 import Movies from './pages/Movies'
 
-import Nav from './components/Navbar'
+import Navbar from './components/Navbar'
 
-const App = () => {
+function App() {
 
   return (
-      <main>
-        <Nav />
-        <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/charts" element={<Charts />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:id" element={<MovieDetail />} />
-        </Routes>
-      </main>
+      <div className="App">
+        <Router>
+          <div>
+            <Navbar />
+          </div>
+          <Routes>
+            <Route path ="/" element={<Home />}  />
+            <Route path ="/movies" element={<Movies />}  />
+            <Route path ="/charts" element={<Charts />}  />
+            <Route path ="/moviess" element={<MovieDetail />}  />
+            <Route path ="*" element ={<h1>404 Not Found</h1>}  />
+          </Routes>
+        </Router>
+      </div>
       
   )
 }

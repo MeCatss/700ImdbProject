@@ -1,7 +1,7 @@
-function MovieDetail() {
-    <section>
-        <h1>Movie Detail</h1>
-    </section>
+const MovieDetail = () => {
+    return (
+            <h1>Movie Detail</h1>
+    )
 }
 
 export default MovieDetail
