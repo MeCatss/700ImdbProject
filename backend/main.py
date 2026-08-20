@@ -36,3 +36,13 @@ def decades_avg_rating():
 def top_directors_by_movies():
     directors = df['Director'].value_counts().head(10).to_dict()
     return {"top_directors": directors}
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
