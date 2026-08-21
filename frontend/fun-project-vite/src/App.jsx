@@ -25,7 +25,7 @@ function App() {
             <Route path ="/" element={<Home />}  />
             <Route path ="/movies" element={<Movies />}  />
             <Route path ="/charts" element={<Charts />}  />
-            <Route path ="/movies/:id" element={<MovieDetail />}  />
+            <Route path ="/movies/:rank" element={<MovieDetail />}  />
             <Route path ="*" element ={<h1>404 Not Found</h1>}  />
           </Routes>
         </Router>

@@ -2,14 +2,14 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 const Charts = () => {
 
-    const [genres, setgenres] = useState([]);
+    const [totalgenres, settotalgenres] = useState([]);
     useEffect(() => {
-        const getgenres = async () => {
+        const gettotalgenres = async () => {
         const res = await axios('http://127.0.0.1:8000/stats/genres');
         console.log(res.data);
-        setgenres(res.data);
+        settotalgenres(res.data);
         };
-        getgenres();
+        gettotalgenres();
     }, []); // To get how many genres valuecount in the database
 
     const [decade, setdecade] = useState([]);
