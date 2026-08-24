@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import GenreTreeMap from '../components/GenreTreeMap.jsx'
 import DecadeLine from '../components/DecadeLine.jsx'
+import SimpleBarChart from '../components/DirectorsBar.jsx'
 
 const Charts = () => {
 
@@ -37,17 +38,21 @@ const Charts = () => {
     const dataDecade = decade?.avg_ratings_by_decade ? Object.entries(decade.avg_ratings_by_decade).map(([decade, rates]) =>{
         return {decade: decade, avgRating: rates};
     }) : [];
-    console.log(dataDecade, 123)
+    // console.log(dataDecade, 123)
 
     const [directors, setdirectors] = useState([]);
     useEffect(() => {
         const getDirectors = async () => {
         const res = await axios('http://127.0.0.1:8000/stats/topdirectors');
-        console.log(res.data);
+        console.log(res.data, 22222222222);
         setdirectors(res.data);
         };
         getDirectors();
     }, []); // To get how many movies top 10 director has directed the most.
+    const dataDirectors = directors?.top_directors ? Object.entries(directors.top_directors).map(([directors, total])=>{
+        return {director: directors, total: total};
+    }) : [];
+    console.log(dataDirectors, 11111111111);
 
     return (
         <div>
@@ -58,7 +63,11 @@ const Charts = () => {
             <div style={{ marginBottom: "20px"}}>
                 <DecadeLine data={dataDecade} />
             </div>
-            
+            <div show ={directors}/>
+        
+            <div style={{ marginBottom: "20px"}}>
+                <SimpleBarChart data={dataDirectors}/>
+            </div>
 
         </div>
     )

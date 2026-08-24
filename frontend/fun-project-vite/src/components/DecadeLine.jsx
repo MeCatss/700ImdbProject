@@ -39,7 +39,7 @@ export default function DecadeLine({data}) {
         <YAxis label={{value: "Average Rating", position: 'insideLeft', offset:20, angle:-90}}/>
         
         <Tooltip />
-        <Legend
+        {/* <Legend
         name={'Average Rating'}
         layout={'horizontal'}
         position={'insideBottomLeft'}
@@ -48,8 +48,8 @@ export default function DecadeLine({data}) {
           border: '2px solid black',
           borderRadius: 4,
           backgroundColor: 'white',
-        }}
-      />
+        }} */}
+      {/* /> */}
         
         {/* Added actual Lines mapping to your data keys */}
         <Line type="monotone" dataKey="avgRating" stroke="#8884d8" activeDot={{ r: 10 }}>
