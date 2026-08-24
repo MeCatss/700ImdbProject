@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import GenreTreeMap from '../components/GenreTreeMap.jsx'
+import DecadeLine from '../components/DecadeLine.jsx'
 
 const Charts = () => {
 
@@ -13,25 +14,30 @@ const Charts = () => {
         };
         gettotalgenres();
     }, []); // To get how many genres valuecount in the database
-    const genreArray = totalgenres.genres ? Object.entries(totalgenres.genres) : []; // convert jeson object into array
+    // const genreArray = totalgenres?.genres ? Object?.entries(totalgenres?.genres) : []; // convert jeson object into array
     
-    const datagenre = Object.entries(totalgenres.genres).map(([genre, count]) =>{
+    const datagenre = totalgenres?.genres ? Object.entries(totalgenres.genres).map(([genre, count]) =>{
         return { name: genre, size: count};
-    })
-    console.log(totalgenres, 11)
-    console.log(datagenre, 22)
-
+    }) : []; // turning total genre object into array with added label name and size, used optional chainig and if/else statement
+    const sliceddatagenre = datagenre.slice(0, 12);
+    // console.log(sliceddatagenre, 11)
+    // console.log(datagenre, 22)
 
 
     const [decade, setdecade] = useState([]);
     useEffect(() => {
         const getDecade = async () => {
         const res = await axios('http://127.0.0.1:8000/stats/decades');
-        console.log(res.data);
+        console.log(res.data, 123);
         setdecade(res.data);
         };
         getDecade();
     }, []); // To get average rating per decade.
+    
+    const dataDecade = decade?.avg_ratings_by_decade ? Object.entries(decade.avg_ratings_by_decade).map(([decade, rates]) =>{
+        return {decade: decade, avgRating: rates};
+    }) : [];
+    console.log(dataDecade, 123)
 
     const [directors, setdirectors] = useState([]);
     useEffect(() => {
@@ -46,7 +52,14 @@ const Charts = () => {
     return (
         <div>
             <h1>Charts</h1>
-            <GenreTreeMap data={datagenre} />
+            <div style={{ marginBottom: "20px", marginLeft: "20px" }}>
+                <GenreTreeMap data={sliceddatagenre} />
+            </div>
+            <div style={{ marginBottom: "20px"}}>
+                <DecadeLine data={dataDecade} />
+            </div>
+            
+
         </div>
     )
 }
