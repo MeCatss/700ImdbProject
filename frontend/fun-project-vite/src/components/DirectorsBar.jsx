@@ -19,7 +19,7 @@ const SimpleBarChart = ({data}) => {
         bottom: 5,
       }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="director" angle={-45} textAnchor="end" height={80}/>
+      <XAxis dataKey="director" angle={-45} textAnchor="end" height={100}/>
       <YAxis label={{ 
     value: "Total Movies Directed", 
     angle: -90, 

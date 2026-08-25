@@ -44,7 +44,7 @@ const Charts = () => {
     useEffect(() => {
         const getDirectors = async () => {
         const res = await axios('http://127.0.0.1:8000/stats/topdirectors');
-        console.log(res.data, 22222222222);
+        // console.log(res.data, 22222222222);
         setdirectors(res.data);
         };
         getDirectors();
@@ -52,7 +52,7 @@ const Charts = () => {
     const dataDirectors = directors?.top_directors ? Object.entries(directors.top_directors).map(([directors, total])=>{
         return {director: directors, total: total};
     }) : [];
-    console.log(dataDirectors, 11111111111);
+    // console.log(dataDirectors, 11111111111);
 
     return (
         <div>
