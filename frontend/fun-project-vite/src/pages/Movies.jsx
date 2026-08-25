@@ -16,46 +16,41 @@ const Movies = () => {
     }, []);
 
 //   2. State to track the active dropdown category
-        const [selectedGenre, setSelectedGenre] = useState('All');
+        const [selectedGenre, setSelectedGenre] = useState([]);
 
         // 3. Compute the filtered array dynamically
         const filteredMovie = useMemo(() => {
-            if (selectedGenre === 'All') {
+            if (selectedGenre === 'All'| selectedGenre === null) {
             return moviedata;
             }
             return moviedata.filter(movies => movies["Genre(s)"].includes(selectedGenre));
             //To check if substring exist withing a string practically not safe but since distinct
         }, [selectedGenre, moviedata]);
-        // console.log(filteredMovie,123)
+        // console.log(selectedGenre,123)
         //movies["Primary Genre)"]
+
+        const genreList =['All', 'Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
 
     return (
         
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
             <h2>Movies</h2>
 
-            <label htmlFor="genre-select" style={{ marginRight: '10px' }}>
-                Filter by Main Genre:
-            </label>
-            <select 
-                id="genre-select"
-                value={selectedGenre} 
-                onChange={(e) => setSelectedGenre(e.target.value)}
-                style={{ padding: '5px', borderRadius: '4px' }}
-            >
-                <option value="All">All Genre</option>
-                <option value="Drama">Drama</option>
-                <option value="Crime">Crime</option>
-                <option value="Biography">Biography</option>
-                <option value="Action">Action</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Mystery">Mystery</option>
-                <option value="Horror">Horror</option>
-                <option value="Animation">Animation</option>
-                <option value="Documentary">Documentary</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="Adventure">Adventure</option>
-            </select>
+            <div style={{ padding: '5px', borderRadius: '4px' }}>
+                {genreList.map((genre) => (
+                <button 
+                key={genre} 
+                onClick={(e) => {
+                    const clickedGenre = e.target.value;
+                    // If clicked again, reset to 'All'. Otherwise, set to the clicked genre.
+                    setSelectedGenre(selectedGenre === clickedGenre ? 'All' : clickedGenre);
+                    }}
+                value={genre}
+                >
+                {genre}
+                </button>
+                ))}
+            </div>
 
             {/* <ul style={{ marginTop: '20px', lineHeight: '2' }}>
                 {filteredMovie.map(movies => (
