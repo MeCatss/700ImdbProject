@@ -33,14 +33,19 @@ const Movies = () => {
             if (selectedGenre.includes('All') || selectedGenre === null) {
             return moviedata;
             }
-            return moviedata.filter(movies => 
-                movies["Genre(s)"].includes(selectedGenre));
+            return moviedata.filter(movie => 
+            selectedGenre.every(genre => movie["Genre(s)"].includes(genre))
+        );
             //To check if substring exist withing a string practically not safe but since distinct
         }, [selectedGenre, moviedata]);
         console.log(selectedGenre,123)
         //movies["Primary Genre)"]
 
-        const genreList =['All', 'Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
+        const handleReset =() =>{
+            setSelectedGenre([]);
+        }
+
+        const genreList =['Reset', 'Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
 
     return (
         
@@ -58,7 +63,9 @@ const Movies = () => {
                         // 1. If the genre is already in the list, remove it
                         if (prevGenres.includes(clickedGenre)) {
                         return prevGenres.filter((genre) => genre !== clickedGenre);
-                        } 
+                        } else if (clickedGenre = ('reset')) {
+                            return handleReset;
+                        }
                         // 2. Otherwise, add it to the list
                         return [...prevGenres, clickedGenre];
                     });
