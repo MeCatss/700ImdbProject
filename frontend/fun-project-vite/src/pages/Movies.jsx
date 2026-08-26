@@ -9,24 +9,35 @@ const Movies = () => {
         const getMovie = async () => {
         const res = await axios('http://127.0.0.1:8000/movies');
         // console.log(res.data.movies);
-        setmoviedata(res.data.movies);
+        const changeseparated =res.data.movies.map(movie =>({
+            ...movie,
+            ["Genre(s)"]: movie["Genre(s)"] ? movie["Genre(s)"].replaceAll('|', ', ') : ''
+        }))
+        console.log(changeseparated)
+
+        setmoviedata(changeseparated);
         };
         getMovie();
         
     }, []);
+
+    // const [moviedata, setmoviedata] = useState([]);
+    // useEffect(()=>{
+    // })
 
 //   2. State to track the active dropdown category
         const [selectedGenre, setSelectedGenre] = useState([]);
 
         // 3. Compute the filtered array dynamically
         const filteredMovie = useMemo(() => {
-            if (selectedGenre === 'All'| selectedGenre === null) {
+            if (selectedGenre.includes('All') || selectedGenre === null) {
             return moviedata;
             }
-            return moviedata.filter(movies => movies["Genre(s)"].includes(selectedGenre));
+            return moviedata.filter(movies => 
+                movies["Genre(s)"].includes(selectedGenre));
             //To check if substring exist withing a string practically not safe but since distinct
         }, [selectedGenre, moviedata]);
-        // console.log(selectedGenre,123)
+        console.log(selectedGenre,123)
         //movies["Primary Genre)"]
 
         const genreList =['All', 'Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
@@ -43,7 +54,14 @@ const Movies = () => {
                 onClick={(e) => {
                     const clickedGenre = e.target.value;
                     // If clicked again, reset to 'All'. Otherwise, set to the clicked genre.
-                    setSelectedGenre(selectedGenre === clickedGenre ? 'All' : clickedGenre);
+                     setSelectedGenre((prevGenres) => {
+                        // 1. If the genre is already in the list, remove it
+                        if (prevGenres.includes(clickedGenre)) {
+                        return prevGenres.filter((genre) => genre !== clickedGenre);
+                        } 
+                        // 2. Otherwise, add it to the list
+                        return [...prevGenres, clickedGenre];
+                    });
                     }}
                 value={genre}
                 >
