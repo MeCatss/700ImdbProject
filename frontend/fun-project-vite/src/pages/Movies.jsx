@@ -21,31 +21,22 @@ const Movies = () => {
         
     }, []);
 
-    // const [moviedata, setmoviedata] = useState([]);
-    // useEffect(()=>{
-    // })
-
-//   2. State to track the active dropdown category
         const [selectedGenre, setSelectedGenre] = useState([]);
+        const [selectedDecade, setSelectedDecade] = useState([]);
+        const [selectedRR, setSelectedRR] = useState([]);
 
-        // 3. Compute the filtered array dynamically
         const filteredMovie = useMemo(() => {
-            if (selectedGenre === ('All') || selectedGenre === null) {
-            return moviedata;
-            }
-            return moviedata.filter(movie => 
-            selectedGenre.every(genre => movie["Genre(s)"].includes(genre))
-        );
-            //To check if substring exist withing a string practically not safe but since distinct
-        }, [selectedGenre, moviedata]);
-        console.log(selectedGenre,123)
-        //movies["Primary Genre)"]
+            return moviedata.filter(movies => 
+                (selectedGenre.length === 0 || selectedGenre.every(genre => movies["Genre(s)"].includes(genre)))
+                && (selectedDecade.length === 0 || selectedDecade.includes(movies.Decade))
+            );
+        }, [selectedGenre, selectedDecade, moviedata]);
+        console.log(selectedGenre, selectedDecade,123)
 
-        const genreList  =['Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
-        const decadeList =['1920','2000','2010','2020']
-        array([1990, 1970, 2000, 1950, 2010, 1960, 1980, 1940, 2020, 1930, 1920])
+        const genreList   =['Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
+        const decadeList  =[1920, 1930,  1940,  1950,  1960,  1970,  1980,  1990, 2000, 2010, 2020]
+        const ratingRange =[7.0-7.5, 7.5-8.0, 8.0-8.5, 8.5-9.0, 9.0-9.5]
         
-
     return (
         
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -60,11 +51,9 @@ const Movies = () => {
                     const clickedGenre = e.target.value;
                     // If clicked again, reset to 'All'. Otherwise, set to the clicked genre.
                      setSelectedGenre((prevGenres) => {
-                        // 1. If the genre is already in the list, remove it
                         if (prevGenres.includes(clickedGenre)) {
                         return prevGenres.filter((genre) => genre !== clickedGenre);
                         }
-                        // 2. Otherwise, add it to the list
                         return [...prevGenres, clickedGenre];
                     });
                     }}
@@ -75,14 +64,26 @@ const Movies = () => {
                 ))}
             </div>
 
-            {/* <ul style={{ marginTop: '20px', lineHeight: '2' }}>
-                {filteredMovie.map(movies => (
-                <li key={movies.Rank}>
-                    <strong>{movies.Title}</strong> - <em>{movies["Primary Genre"]}</em>
-                </li>
+            <div style={{ padding: '5px', borderRadius: '4px' }}>
+                <button onClick={() => setSelectedDecade([])}>Clear Decade List</button>
+                {decadeList.map((decade) => (
+                <button 
+                key={decade} 
+                onClick={(e) => {
+                    const clickedDecade = parseInt(e.target.value);
+                     setSelectedDecade((prevDecade) => {
+                        if (prevDecade.includes(clickedDecade)) {
+                        return prevDecade.filter((decade) => decade !== clickedDecade);
+                        }
+                        return [...prevDecade, clickedDecade];
+                    });
+                    }}
+                value={decade}
+                >
+                {decade}
+                </button>
                 ))}
-            </ul>
-            {filteredMovie.length === 0 && <p>No products found.</p>} */}
+            </div>
 
             {filteredMovie.map((movies) => (
                 <div key={movies.Rank} 
@@ -101,10 +102,6 @@ const Movies = () => {
                     <p>Year: {movies["Year"]}</p> 
                 </div>
             ))}
-            {/* Case Sensitive on the movies.**** */}
-            {/* {moviedata.length === 0 ? <p>Loading data...</p> : (
-        <pre>{JSON.stringify(moviedata, null, 2)}</pre>
-      )} */}
                 
         </div>
     )
