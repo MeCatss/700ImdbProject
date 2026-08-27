@@ -30,7 +30,7 @@ const Movies = () => {
 
         // 3. Compute the filtered array dynamically
         const filteredMovie = useMemo(() => {
-            if (selectedGenre.includes('All') || selectedGenre === null) {
+            if (selectedGenre === ('All') || selectedGenre === null) {
             return moviedata;
             }
             return moviedata.filter(movie => 
@@ -41,11 +41,10 @@ const Movies = () => {
         console.log(selectedGenre,123)
         //movies["Primary Genre)"]
 
-        const handleReset =() =>{
-            setSelectedGenre([]);
-        }
-
-        const genreList =['Reset', 'Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
+        const genreList  =['Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
+        const decadeList =['1920','2000','2010','2020']
+        array([1990, 1970, 2000, 1950, 2010, 1960, 1980, 1940, 2020, 1930, 1920])
+        
 
     return (
         
@@ -53,6 +52,7 @@ const Movies = () => {
             <h2>Movies</h2>
 
             <div style={{ padding: '5px', borderRadius: '4px' }}>
+                <button onClick={() => setSelectedGenre([])}>Reset Genre</button>
                 {genreList.map((genre) => (
                 <button 
                 key={genre} 
@@ -63,8 +63,6 @@ const Movies = () => {
                         // 1. If the genre is already in the list, remove it
                         if (prevGenres.includes(clickedGenre)) {
                         return prevGenres.filter((genre) => genre !== clickedGenre);
-                        } else if (clickedGenre = ('reset')) {
-                            return handleReset;
                         }
                         // 2. Otherwise, add it to the list
                         return [...prevGenres, clickedGenre];
