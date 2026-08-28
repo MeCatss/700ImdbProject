@@ -50,7 +50,7 @@ const Movies = () => {
             <h2>Movies</h2>
 
             <div style={{ padding: '5px', borderRadius: '4px' }}>
-                <button onClick={() => setSelectedGenre([])}>Reset Genre</button>
+                <button onClick={() => setSelectedGenre([])}>Clear Genre</button>
                 {genreList.map((genre) => (
                 <button 
                 key={genre} 
@@ -108,8 +108,8 @@ const Movies = () => {
             </div>
 
             <div style={{ padding: '10px', borderRadius: '4px' }}>
-                <button onClick={() => [setSelectedRR(null), setSelectedDecade([]), setSelectedGenre([])]}
-                    >Clear Rating List</button>
+                <button onClick={() => {setSelectedRR(null); setSelectedDecade([]); setSelectedGenre([]);}}
+                    >Clear All Filter</button>
             </div>
 
             {filteredMovie.map((movies) => (
