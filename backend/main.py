@@ -1,9 +1,12 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from get_recommendations_file import get_recommendations
 import pandas as pd
+import joblib
 
 app = FastAPI()
-
 df = pd.read_csv("../data/IMDb_Top_700_Movies_2026_cleaned.csv")
+cos_sim = joblib.load("../data/cosine_similarity_movie.joblib")
 
 @app.get("/") #To test if the server is running
 def main():
@@ -37,8 +40,10 @@ def top_directors_by_movies():
     directors = df['Director'].value_counts().head(10).to_dict()
     return {"top_directors": directors}
 
+@app.get("/recommendations/{title}")
+def movierecommendations(title):
+    return {"movie": get_recommendations(title, df, cos_sim)}
 
-from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
