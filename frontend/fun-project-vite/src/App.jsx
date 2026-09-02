@@ -16,9 +16,9 @@ import Navbar from './components/Navbar'
 
 function App() {
   return (
-      <div className="App">
+      <div className="bg-black min-h-screen pt-4">
         <Router>
-          <div>
+          <div >
             <Navbar />
           </div>
           <Routes>

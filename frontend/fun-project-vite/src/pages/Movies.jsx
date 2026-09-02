@@ -21,28 +21,28 @@ const Movies = () => {
         
     }, []);
 
-        const [selectedGenre, setSelectedGenre] = useState([]);
-        const [selectedDecade, setSelectedDecade] = useState([]);
-        const [selectedRR, setSelectedRR] = useState(null);
-        
-        const genreList   =['Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
-        const decadeList  =[1920, 1930,  1940,  1950,  1960,  1970,  1980,  1990, 2000, 2010, 2020]
-        const ratingRange = [
-            { label: "7.0 - 7.5", min: 7.0, max: 7.5 },
-            { label: "7.5 - 8.0", min: 7.5, max: 8.0 },
-            { label: "8.0 - 8.5", min: 8.0, max: 8.5 },
-            { label: "8.5 - 9.0", min: 8.5, max: 9.0 },
-            { label: "9.0 - 9.5", min: 9.0, max: 9.5 }
-        ];
+    const [selectedGenre, setSelectedGenre] = useState([]);
+    const [selectedDecade, setSelectedDecade] = useState([]);
+    const [selectedRR, setSelectedRR] = useState(null);
+    
+    const genreList   =['Drama', 'Crime', 'Biography', 'Action', 'Comedy', 'Mystery', 'Horror', 'Animation', 'Documentary', 'Fantasy', 'Adventure']
+    const decadeList  =[1920, 1930,  1940,  1950,  1960,  1970,  1980,  1990, 2000, 2010, 2020]
+    const ratingRange = [
+        { label: "7.0 - 7.5", min: 7.0, max: 7.5 },
+        { label: "7.5 - 8.0", min: 7.5, max: 8.0 },
+        { label: "8.0 - 8.5", min: 8.0, max: 8.5 },
+        { label: "8.5 - 9.0", min: 8.5, max: 9.0 },
+        { label: "9.0 - 9.5", min: 9.0, max: 9.5 }
+    ];
 
-        const filteredMovie = useMemo(() => {
-            return moviedata.filter(movies => 
-                (selectedGenre.length === 0 || selectedGenre.every(genre => movies["Genre(s)"].includes(genre)))
-                && (selectedDecade.length === 0 || selectedDecade.includes(movies.Decade))
-                && (selectedRR === null || (movies['IMDb Rating'] >= selectedRR.min && movies['IMDb Rating'] <= selectedRR.max))
-            );
-        }, [selectedGenre, selectedDecade, selectedRR, moviedata]);
-        console.log(selectedGenre, selectedDecade, selectedRR, 123)
+    const filteredMovie = useMemo(() => {
+        return moviedata.filter(movies => 
+            (selectedGenre.length === 0 || selectedGenre.every(genre => movies["Genre(s)"].includes(genre)))
+            && (selectedDecade.length === 0 || selectedDecade.includes(movies.Decade))
+            && (selectedRR === null || (movies['IMDb Rating'] >= selectedRR.min && movies['IMDb Rating'] <= selectedRR.max))
+        );
+    }, [selectedGenre, selectedDecade, selectedRR, moviedata]);
+    console.log(selectedGenre, selectedDecade, selectedRR, 123)
         
     return (
         
@@ -70,7 +70,7 @@ const Movies = () => {
                 </button>
                 ))}
             </div>
-
+                 // filter 1
             <div style={{ padding: '5px', borderRadius: '4px' }}>
                 <button onClick={() => setSelectedDecade([])}>Clear Decade List</button>
                 {decadeList.map((decade) => (
@@ -91,7 +91,7 @@ const Movies = () => {
                 </button>
                 ))}
             </div>
-
+                // filter 2
             <div style={{ padding: '5px', borderRadius: '4px' }}>
                 <button onClick={() => setSelectedRR(null)}>Clear Rating List</button>
                 {ratingRange.map((RR) => (
@@ -106,7 +106,7 @@ const Movies = () => {
                 </button>
                 ))}
             </div>
-
+                // filter 3
             <div style={{ padding: '10px', borderRadius: '4px' }}>
                 <button onClick={() => {setSelectedRR(null); setSelectedDecade([]); setSelectedGenre([]);}}
                     >Clear All Filter</button>

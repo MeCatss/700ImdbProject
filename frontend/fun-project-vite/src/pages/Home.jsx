@@ -44,13 +44,35 @@ const [directors, setdirectors] = useState([]);
     const directorsarray = directors?.top_directors ? Object.entries(directors?.top_directors) : []; // convert jeson object into array
     console.log(directorsarray)
     return (
-        <div>  
-                <h1>TOP 700 IMDb rated Movies</h1>
-                <p>Total Movies: {moviedata.length}</p>
-                <p>Highest rated movie: {moviedata[0]?.Title}</p>
-                <p>Average Rating: {averageRating}</p>
-                <p>Top Genre: {genreArray[0]?.[0]}  with total of {genreArray[0]?.[1]} movies</p>
-                <p>Top Directors: {directorsarray[0]?.[0]} with total of {directorsarray[0]?.[1]} movies directed</p>
+        <div className='min-h-screen bg-black text-white px-8 py-12 max-w-4xl mx-auto'>  
+            <h1 className='text-4xl font-bold text-cyan-400 mb-8'
+            >TOP 700 IMDb rated Movies</h1>
+                <div className='grid grid-cols-2 gap-4 max-w-3xl'>
+                    <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800'>
+                        <p className='text-zinc-500 text-sm mb-1'
+                        >The Number 1 Movie</p>
+                        <p className='text-white font-semibold text-lg'
+                        >{moviedata[0]?.Title}</p>
+                    </div>
+
+                    <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800'>
+                        <p className='text-zinc-500 text-sm mb-1'
+                        >Average Rating</p>
+                        <p className='text-white font-semibold text-lg'
+                        >{averageRating}</p>
+                    </div>
+
+                    <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800'>
+                        <p className='text-zinc-500 text-sm mb-1'>The Number 1 Genre</p>
+                        <p className='text-white font-semibold text-lg'>{genreArray[0]?.[0]}  with {genreArray[0]?.[1]} movies</p>
+                    </div>
+
+                    <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800'>
+                        <p className='text-zinc-500 text-sm mb-1'>Top Director</p>
+                        <p className='text-white font-semibold text-lg'>{directorsarray[0]?.[0]} with {directorsarray[0]?.[1]} movies directed</p>
+                    </div>
+                </div>
+                
         </div>
             
     )
