@@ -28,36 +28,73 @@ const MovieDetail = () => {
     }, [moviedetail])
 
     return (
-        <div>
-            <div key={moviedetail.Rank} 
-                style={{border: '10px solid black',
-                        margin: '20px',
-                        padding: '10px'
-                        }}>
-                    <h1>Movie Detail</h1>
-                    <h3>{moviedetail.Title}</h3>
-                    <p>Rank: {moviedetail.Rank}</p>
-                    <p>Genre: {moviedetail["Genre(s)"]}</p>
-                    <p>Runtime (mins): {moviedetail["Runtime (mins)"]}</p>
-                    <p>Director: {moviedetail.Director}</p>
-                    <p>Country : {moviedetail.Country}</p>
-                    <p>Actor(s): {moviedetail["Main Actor(s)"]}</p>
-                    <p>Year: {moviedetail["Year"]}</p>
-                    <p>Rating: {moviedetail["IMDb Rating"]}   Votes: {moviedetail.Votes}</p>
-                </div>
+        <div className="min-h-screen bg-black text-white px-8 py-6 max-w-4xl mx-auto">
+
+            {/* Movie Detail */}
+            <div className="bg-zinc-900 rounded-xl p-8 border border-zinc-800 mb-8">
+
+                <h1>Movie Detail</h1>
+
+                <h3 className="text-3xl font-bold text-cyan-400 mb-4">
+                    {moviedetail.Title}
+                </h3>
+
+                <p className="text-zinc-400 mb-1">
+                    Rank: <span className="text-white">{moviedetail.Rank}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Genre: <span className="text-white">{moviedetail["Genre(s)"]}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Runtime (mins): <span className="text-white">{moviedetail["Runtime (mins)"]}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Director: <span className="text-white">{moviedetail.Director}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Country: <span className="text-white">{moviedetail.Country}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Actor(s): <span className="text-white">{moviedetail["Main Actor(s)"]}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Year: <span className="text-white">{moviedetail.Year}</span>
+                </p>
+
+                <p className="text-zinc-400 mb-1">
+                    Rating: <span className="text-white">{moviedetail["IMDb Rating"]}</span>
+                    {"   "}
+                    Votes: <span className="text-white">{moviedetail.Votes}</span>
+                </p>
+
+            </div>
+
+
+            {/* Recommendations */}
+            <h2 className="text-xl font-semibold text-white mb-4">
+                You might also like
+            </h2>
+
+            <div className="grid grid-cols-5 gap-3">
 
                 {movierec.map((movie) => (
-                <div key={movie.Rank} 
-                style={{border: '10px solid black',
-                        margin: '20px',
-                        padding: '10px',
-                        cursor:"pointer"}}
-                onClick={() => navigate(`/movies/${movie.Rank}`)}
-                >
-                    <h3>{movie.Title}</h3>
-                </div>
-            ))}
-            
+                    <div
+                        key={movie.Rank}
+                        className="bg-zinc-900 rounded-lg p-3 border border-zinc-800 cursor-pointer hover:border-cyan-400 text-sm"
+                        onClick={() => navigate(`/movies/${movie.Rank}`)}
+                    >
+                        <h3>{movie.Title}</h3>
+                    </div>
+                ))}
+
+            </div>
+
         </div>
     )
 }

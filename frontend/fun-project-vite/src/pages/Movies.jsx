@@ -46,89 +46,99 @@ const Movies = () => {
         
     return (
         
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-            <h2>Movies</h2>
+        <div className='min-h-screen bg-black text-white px-8 py-6 max-w-5xl mx-auto'>
+            <h1 className='text-3xl font-bold text-cyan-400 mb-6'>Movie List</h1>
 
-            <div style={{ padding: '5px', borderRadius: '4px' }}>
-                <button onClick={() => setSelectedGenre([])}>Clear Genre</button>
-                {genreList.map((genre) => (
-                <button 
-                key={genre} 
-                onClick={(e) => {
-                    const clickedGenre = e.target.value;
-                    // If clicked again, reset to 'All'. Otherwise, set to the clicked genre.
-                     setSelectedGenre((prevGenres) => {
-                        if (prevGenres.includes(clickedGenre)) {
-                        return prevGenres.filter((genre) => genre !== clickedGenre);
-                        }
-                        return [...prevGenres, clickedGenre];
-                    });
-                    }}
-                value={genre}
-                >
-                {genre}
-                </button>
-                ))}
-            </div>
-                 // filter 1
-            <div style={{ padding: '5px', borderRadius: '4px' }}>
-                <button onClick={() => setSelectedDecade([])}>Clear Decade List</button>
-                {decadeList.map((decade) => (
-                <button 
-                key={decade} 
-                onClick={(e) => {
-                    const clickedDecade = parseInt(e.target.value);
-                     setSelectedDecade((prevDecade) => {
-                        if (prevDecade.includes(clickedDecade)) {
-                        return prevDecade.filter((decade) => decade !== clickedDecade);
-                        }
-                        return [...prevDecade, clickedDecade];
-                    });
-                    }}
-                value={decade}
-                >
-                {decade}
-                </button>
-                ))}
-            </div>
-                // filter 2
-            <div style={{ padding: '5px', borderRadius: '4px' }}>
-                <button onClick={() => setSelectedRR(null)}>Clear Rating List</button>
-                {ratingRange.map((RR) => (
-                <button 
-                key={RR.label} 
-                onClick={() => {
-                    setSelectedRR(selectedRR?.label === RR.label ? null : RR)
-                    }}
-                value={RR}
-                >
-                {RR.label}
-                </button>
-                ))}
-            </div>
-                // filter 3
-            <div style={{ padding: '10px', borderRadius: '4px' }}>
-                <button onClick={() => {setSelectedRR(null); setSelectedDecade([]); setSelectedGenre([]);}}
-                    >Clear All Filter</button>
-            </div>
-
-            {filteredMovie.map((movies) => (
-                <div key={movies.Rank} 
-                style={{border: '10px solid black',
-                        margin: '20px',
-                        padding: '10px',
-                        cursor:"pointer"}}
-                onClick={() => navigate(`/movies/${movies.Rank}`)}
-                >
-                    
-                    <h3>{movies.Title}</h3>
-                    <p>Rank: {movies.Rank}</p>
-                    <p>Genre: {movies["Genre(s)"]}</p>
-                    <p>Runtime (mins): {movies["Runtime (mins)"]}</p>
-                    <p>Rating: {movies["IMDb Rating"]}</p>
-                    <p>Year: {movies["Year"]}</p> 
+            <div className='flex flex-wrap gap-2 mb-4'>
+                <div className='bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm cursor-pointer gap-2 flex flex-wrap'>
+                    {genreList.map((genre) => (
+                    <button 
+                    key={genre} 
+                    className={`px-3 py-1 rounded-full text-sm cursor-pointer border transition-colors
+                    ${selectedGenre.includes(genre) 
+                        ? 'bg-cyan-400 text-black border-cyan-400' 
+                        : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-cyan-400 hover:text-black'}`}
+                    onClick={(e) => {
+                        const clickedGenre = e.target.value;
+                        // If clicked again, reset to 'All'. Otherwise, set to the clicked genre.
+                        setSelectedGenre((prevGenres) => {
+                            if (prevGenres.includes(clickedGenre)) {
+                            return prevGenres.filter((genre) => genre !== clickedGenre);
+                            }
+                            return [...prevGenres, clickedGenre];
+                        });
+                        }}
+                    value={genre}
+                    >
+                    {genre}
+                    </button>
+                    ))}
                 </div>
-            ))}
+
+                <div className='bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm cursor-pointer gap-2 flex flex-wrap'>
+                    {decadeList.map((decade) => (
+                    <button 
+                    key={decade} 
+                    className={`px-3 py-1 rounded-full text-sm cursor-pointer border transition-colors
+                    ${selectedGenre.includes(decade) 
+                        ? 'bg-cyan-400 text-black border-cyan-400' 
+                        : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-cyan-400 hover:text-black'}`}
+                    onClick={(e) => {
+                        const clickedDecade = parseInt(e.target.value);
+                        setSelectedDecade((prevDecade) => {
+                            if (prevDecade.includes(clickedDecade)) {
+                            return prevDecade.filter((decade) => decade !== clickedDecade);
+                            }
+                            return [...prevDecade, clickedDecade];
+                        });
+                        }}
+                    value={decade}
+                    >
+                    {decade}
+                    </button>
+                    ))}
+                </div>
+
+                <div className='bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm cursor-pointer gap-2 flex flex-wrap'>
+                    {ratingRange.map((RR) => (
+                    <button 
+                    key={RR.label} 
+                    className={`px-3 py-1 rounded-full text-sm cursor-pointer border transition-colors
+                    ${selectedGenre.includes(RR) 
+                        ? 'bg-cyan-400 text-black border-cyan-400' 
+                        : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-cyan-400 hover:text-black'}`}
+                    onClick={() => {
+                        setSelectedRR(selectedRR?.label === RR.label ? null : RR)
+                        }}
+                    value={RR}
+                    >
+                    {RR.label}
+                    </button>
+                    ))}
+                </div>
+
+                <div className='bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm hover:bg-cyan-400 hover:text-black cursor-pointer gap-2 flex flex-wrap'>
+                    <button onClick={() => {setSelectedRR(null); setSelectedDecade([]); setSelectedGenre([]);}}
+                        >Clear All Filter</button>
+                </div>
+            </div>
+            
+            <div className='grid grid-cols-3 gap-4 mt-6'>
+                {filteredMovie.map((movies) => (
+                    <div key={movies.Rank} 
+                    className='bg-zinc-900 rounded-xl p-4 border border-zinc-800 cursor-pointer hover:border-cyan-400'
+                    onClick={() => navigate(`/movies/${movies.Rank}`)}
+                    >
+                        <h3>{movies.Title}</h3>
+                        <p>Rank: {movies.Rank}</p>
+                        <p>Genre: {movies["Genre(s)"]}</p>
+                        <p>Runtime (mins): {movies["Runtime (mins)"]}</p>
+                        <p>Rating: {movies["IMDb Rating"]}</p>
+                        <p>Year: {movies["Year"]}</p> 
+                    </div>
+                ))}
+            </div>
+                
                 
         </div>
     )
