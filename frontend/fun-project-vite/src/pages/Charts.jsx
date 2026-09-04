@@ -55,17 +55,26 @@ const Charts = () => {
     // console.log(dataDirectors, 11111111111);
 
     return (
-        <div>
-            <h1>Charts</h1>
-            <div style={{ marginBottom: "20px", marginLeft: "20px" }}>
+        <div className='min-h-screen bg-black text-white px-8 py-6 max-w-5xl mx-auto'>
+            <h1 className='text-3xl font-bold text-cyan-400 mb-8'>Charts</h1>
+            <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800 mb-6'>
+                <label className='text-lg font-semibold text-cyan-400 mb-6'>
+                    Genre Tree Map
+                </label>
                 <GenreTreeMap data={sliceddatagenre} />
             </div>
-            <div style={{ marginBottom: "20px"}}>
+            <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800 mb-6'>
+                <label className='text-lg font-semibold text-cyan-400 mb-4'>
+                    Average Rating each Decade
+                </label>
                 <DecadeLine data={dataDecade} />
             </div>
             <div show ={directors}/>
         
-            <div style={{ marginBottom: "20px"}}>
+            <div className='bg-zinc-900 rounded-xl p-6 border border-zinc-800 mb-6'>
+                <label className='text-lg font-semibold text-cyan-400 mb-4'>
+                    Directors with Most Movies
+                </label>
                 <SimpleBarChart data={dataDirectors}/>
             </div>
 

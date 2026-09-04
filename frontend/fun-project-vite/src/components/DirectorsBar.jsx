@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 // const data = [
 //   { director: "Director A", size: 20 },
@@ -8,10 +8,10 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 
 const SimpleBarChart = ({data}) => {
   return (
+  <ResponsiveContainer width="100%" height={500}>
     <BarChart
-      style={{ width: '100%', maxWidth: '700px', maxHeight: '70vh', aspectRatio: 1.618 }}
-      responsive
       data={data}
+      barSize={35}
       margin={{
         top: 5,
         right: 20,
@@ -19,26 +19,20 @@ const SimpleBarChart = ({data}) => {
         bottom: 5,
       }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="director" angle={-45} textAnchor="end" height={100}/>
+      <XAxis dataKey="director" angle={-45} textAnchor="end" height={120}/>
       <YAxis label={{ 
     value: "Total Movies Directed", 
     angle: -90, 
-    position: "", // Place it inside the left edge boundary
-    offset: 0             // Push it 10 pixels to the left away from the numbers
+    position: "", 
+    offset: 0     
   }} />
-      <Tooltip />
-      {/* <Legend
-        name={'Average Rating'}
-        layout={'horizontal'}
-        position={'insideBottomLeft'}
-        offset={0}
-        wrapperStyle={{
-          border: '2px solid black',
-          borderRadius: 4,
-          backgroundColor: 'white',
-        }}/> */}
-      <Bar dataKey="total" radius={[10, 10, 0, 0]} fill="#8884d8"/>
+      <Tooltip 
+    contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', color: '#fff' }}
+    labelStyle={{ color: '#22d3ee' }}
+/>
+      <Bar dataKey="total" radius={[12, 12, 0, 0]} fill="#22d3ee"/>
     </BarChart>
+    </ResponsiveContainer>
   );
 };
 

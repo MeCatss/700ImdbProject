@@ -73,6 +73,25 @@ const [directors, setdirectors] = useState([]);
                         <p className='text-white font-semibold text-lg'>{directorsarray[0]?.[0]} with {directorsarray[0]?.[1]} movies directed</p>
                     </div>
                 </div>
+
+                <p className='text-zinc-400 text-sm max-w-4xl mt-11'>
+                    This website show the list of Top 700 IMDb Rated movies dataset, small charts, and the movie detail.
+                    <br />You can browse and filter movies by genre, decade, and rating {"(mostly higher than 7.5)"}.
+                    <br />Could be used to look for movie you like and its similar movies.
+                    <br />Built it using Python, FastAPI, React, and scikit-learn.
+                </p>
+
+                <p className='text-zinc-400 text-sm max-w-4xl mt-11'>
+                    This project is still in development many rooms for improvemenet.
+                    <br />Dataset that used in this project :
+                    <a target="_blank" className="text-zinc-500 hover:text-cyan-400"
+                     href='source: https://www.kaggle.com/datasets/saitejabandaruin/imdb-top-700-movies-2026-edition/data'> top 700 imdb movie analytic kaggle data</a>
+                </p>
+                <p className='text-zinc-400 text-sm max-w-4xl mt-11'>
+                    This is a little project i make to help me relearn about
+                     github, Pandas, React, FastApi, Machine Learning {"(not implemented cause the data too little, cosine similarity used here)"},
+                     JavaScript XML, Html, Css, and so on. 
+                </p>
                 
         </div>
             

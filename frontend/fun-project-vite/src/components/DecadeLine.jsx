@@ -5,7 +5,6 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  Legend, 
   ResponsiveContainer
 } from 'recharts';
 
@@ -20,10 +19,7 @@ import {
 export default function DecadeLine({data}) {
   return (
     // ResponsiveContainer handles fluid sizing safely instead of the chart's style prop
-    <ResponsiveContainer 
-      width="100%" 
-      style={{ maxWidth: '700px', maxHeight: '70vh', aspectRatio: 1.618 }}
-    >
+    <ResponsiveContainer width="100%" height={400}>
       <LineChart
         data={data}
         margin={{
@@ -32,13 +28,17 @@ export default function DecadeLine({data}) {
           left: 0,
           bottom: 5,
         }}
+        width="100%"
       >
         <CartesianGrid strokeDasharray="5 5 1 5" />
         
         <XAxis dataKey="decade"  label={{value: "Decade", position: 'insideBottom', offset:-5}}/>
-        <YAxis label={{value: "Average Rating", position: 'insideLeft', offset:20, angle:-90}}/>
+        <YAxis label={{value: "Average Rating", position: 'insideLeft', offset:20, angle:-90}} domain={[7, 9]}/>
         
-        <Tooltip />
+        <Tooltip 
+    contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', color: '#fff' }}
+    labelStyle={{ color: '#22d3ee' }}
+/>
         {/* <Legend
         name={'Average Rating'}
         layout={'horizontal'}
@@ -52,7 +52,7 @@ export default function DecadeLine({data}) {
       {/* /> */}
         
         {/* Added actual Lines mapping to your data keys */}
-        <Line type="monotone" dataKey="avgRating" stroke="#8884d8" activeDot={{ r: 10 }}>
+        <Line type="monotone" dataKey="avgRating" stroke="#22d3ee" activeDot={{ r: 10 }}>
         </Line>
         {/* <Line type="monotone" dataKey="expenses" stroke="#82ca9d" /> */}
         
