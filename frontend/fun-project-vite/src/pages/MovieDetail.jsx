@@ -10,7 +10,7 @@ const MovieDetail = () => {
     const [moviedetail, setmoviedetail] = useState([]);
     useEffect(() => {
         const getMovieDetail = async () => {
-        const res = await axios(`http://127.0.0.1:8000/movies/${rank}`); 
+        const res = await axios(`https://700imdbproject-production.up.railway.app/movies/${rank}`); 
         console.log(res.data.movie);
         setmoviedetail(res.data.movie);
         };
@@ -21,7 +21,7 @@ const MovieDetail = () => {
     useEffect(() => {
         if(!moviedetail.Title) return
         const getmovierec = async () => {
-        const res = await axios(`http://127.0.0.1:8000/recommendations/${encodeURIComponent(moviedetail.Title)}`)
+        const res = await axios(`https://700imdbproject-production.up.railway.app/recommendations/${encodeURIComponent(moviedetail.Title)}`)
         console.log(res.data.movie,123323)
         setmovierec(res.data.movie)    
         };

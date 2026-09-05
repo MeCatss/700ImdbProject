@@ -7,7 +7,7 @@ const Movies = () => {
     const [moviedata, setmoviedata] = useState([]);
     useEffect(() => {
         const getMovie = async () => {
-        const res = await axios('http://127.0.0.1:8000/movies');
+        const res = await axios('https://700imdbproject-production.up.railway.app/movies');
         // console.log(res.data.movies);
         const changeseparated =res.data.movies.map(movie =>({
             ...movie,

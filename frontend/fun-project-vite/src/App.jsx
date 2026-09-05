@@ -8,7 +8,7 @@ import Navbar from './components/Navbar'
 
 
 // const api = axios.create({
-//   baseURL: 'http://127.0.0.1:8000/movies/',
+//   baseURL: 'https://700imdbproject-production.up.railway.app/movies/',
 //   },
 // )
 

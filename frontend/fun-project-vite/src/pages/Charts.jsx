@@ -9,7 +9,7 @@ const Charts = () => {
     const [totalgenres, settotalgenres] = useState([]);
     useEffect(() => {
         const gettotalgenres = async () => {
-        const res = await axios('http://127.0.0.1:8000/stats/genres');
+        const res = await axios('https://700imdbproject-production.up.railway.app/stats/genres');
         console.log(res.data);
         settotalgenres(res.data);
         };
@@ -28,7 +28,7 @@ const Charts = () => {
     const [decade, setdecade] = useState([]);
     useEffect(() => {
         const getDecade = async () => {
-        const res = await axios('http://127.0.0.1:8000/stats/decades');
+        const res = await axios('https://700imdbproject-production.up.railway.app/stats/decades');
         console.log(res.data, 123);
         setdecade(res.data);
         };
@@ -43,7 +43,7 @@ const Charts = () => {
     const [directors, setdirectors] = useState([]);
     useEffect(() => {
         const getDirectors = async () => {
-        const res = await axios('http://127.0.0.1:8000/stats/topdirectors');
+        const res = await axios('https://700imdbproject-production.up.railway.app/stats/topdirectors');
         // console.log(res.data, 22222222222);
         setdirectors(res.data);
         };
