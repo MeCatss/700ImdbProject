@@ -5,8 +5,8 @@ import pandas as pd
 import joblib
 
 app = FastAPI()
-df = pd.read_csv("../data/IMDb_Top_700_Movies_2026_cleaned.csv")
-cos_sim = joblib.load("../data/cosine_similarity_movie.joblib")
+df = pd.read_csv("IMDb_Top_700_Movies_2026_cleaned.csv")
+cos_sim = joblib.load("cosine_similarity_movie.joblib")
 
 @app.get("/") #To test if the server is running
 def main():
