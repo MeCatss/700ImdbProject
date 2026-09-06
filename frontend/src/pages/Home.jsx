@@ -89,7 +89,7 @@ const [directors, setdirectors] = useState([]);
                 </p>
                 <p className='text-zinc-400 text-sm max-w-4xl mt-11'>
                     This is a little project i make to help me relearn about
-                     github, Pandas, React, FastApi, Machine Learning {"(not implemented cause the data too little, cosine similarity used here)"},
+                     github, Pandas, React, FastApi, Content-based recommendation using cosine similarity,
                      JavaScript XML, Html, Css, and so on. 
                 </p>
                 
