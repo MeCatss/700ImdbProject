@@ -43,6 +43,11 @@ const Movies = () => {
         );
     }, [selectedGenre, selectedDecade, selectedRR, moviedata]);
     console.log(selectedGenre, selectedDecade, selectedRR, 123)
+
+    const [visibleCount, setVisibleCount] = useState(20);
+    useEffect(() => {
+        setVisibleCount(20)
+    }, [selectedGenre, selectedDecade, selectedRR])
         
     return (
         
@@ -50,14 +55,14 @@ const Movies = () => {
             <h1 className='text-3xl font-bold text-cyan-400 mb-6'>Movie List</h1>
 
             <div className='flex flex-wrap gap-2 mb-4'>
-                <div className='bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm cursor-pointer gap-2 flex flex-wrap'>
+                <div className='bg-zinc-800 text-zinc-300 px-4 py-2 rounded-full text-sm cursor-pointer gap-2 flex flex-wrap'>
                     {genreList.map((genre) => (
                     <button 
                     key={genre} 
-                    className={`px-3 py-1 rounded-full text-sm cursor-pointer border transition-colors
+                    className={`px-3 py-1 rounded-full text-sm cursor-pointer border transition-colors 
                     ${selectedGenre.includes(genre) 
                         ? 'bg-cyan-400 text-black border-cyan-400' 
-                        : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-cyan-400 hover:text-black'}`}
+                        : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-cyan-400 hover:text-black '}`}
                     onClick={(e) => {
                         const clickedGenre = e.target.value;
                         // If clicked again, reset to 'All'. Otherwise, set to the clicked genre.
@@ -124,7 +129,7 @@ const Movies = () => {
             </div>
             
             <div className='grid grid-cols-3 gap-4 mt-6'>
-                {filteredMovie.map((movies) => (
+                {filteredMovie.slice(0, visibleCount).map((movies) => (
                     <div key={movies.Rank} 
                     className='bg-zinc-900 rounded-xl p-4 border border-zinc-800 cursor-pointer hover:border-cyan-400'
                     onClick={() => navigate(`/movies/${movies.Rank}`)}
@@ -138,8 +143,18 @@ const Movies = () => {
                     </div>
                 ))}
             </div>
-                
-                
+                <button
+                className="px-6 py-2 rounded-full text-sm cursor-pointer border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-colors flex justify-center gap-3 mt-5 mb-5 w-full"
+                onClick={() => {
+                        setVisibleCount((prevCount) => prevCount + 20)
+                        }}
+                >Show More</button>
+                <button
+                className="px-6 py-2 rounded-full text-sm cursor-pointer border border-cyan-500 text-cyan-300 hover:bg-zinc-500 hover:text-black transition-colors flex justify-center gap-3 mt-5 mb-5 w-full"
+                onClick={() => {
+                        setVisibleCount(filteredMovie.length)
+                        }}
+                >Show All</button>
         </div>
     )
 }
