@@ -11,6 +11,10 @@ It shows the Top 700 IMDb rated movies, with small charts and a detail page per 
 - Content-based recommendation with cosine similarity
 - Git and GitHub workflow
 
+## Live Link
+https://mecats700imdbproject.vercel.app/
+https://700-imdb-project-backend.vercel.app/
+
 ## Status
 Lots of room for improvement. though idk if i am gonna continue since its better to do another project.
 
