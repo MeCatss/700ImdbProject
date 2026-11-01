@@ -6,7 +6,7 @@ const Home = () => {
     const [moviedata, setmoviedata] = useState([]);// to fetch full movie data
     useEffect(() => {
         const getMovie = async () => {
-        const res = await axios('https://700imdbproject-production.up.railway.app/movies');
+        const res = await axios('https://700-imdb-project-backend.vercel.app/movies');
         // console.log(res.data.movies);
         setmoviedata(res.data.movies);
         };
@@ -16,7 +16,7 @@ const Home = () => {
 const [totalgenres, settotalgenres] = useState([]); // to fetch most used genres
     useEffect(() => {
         const gettotalgenres = async () => {
-        const res = await axios('https://700imdbproject-production.up.railway.app/stats/genres');
+        const res = await axios('https://700-imdb-project-backend.vercel.app/stats/genres');
         console.log(res.data.genres, "olol");
         settotalgenres(res.data.genres);
         };
@@ -34,7 +34,7 @@ const averageRating = (() => {
 const [directors, setdirectors] = useState([]);
     useEffect(() => {
         const getDirectors = async () => {
-        const res = await axios('https://700imdbproject-production.up.railway.app/stats/topdirectors');
+        const res = await axios('https://700-imdb-project-backend.vercel.app/stats/topdirectors');
         console.log(res.data);
         setdirectors(res.data);
         };

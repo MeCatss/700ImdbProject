@@ -7,10 +7,7 @@ import Movies from './pages/Movies'
 import Navbar from './components/Navbar'
 
 
-// const api = axios.create({
-//   baseURL: 'https://700imdbproject-production.up.railway.app/movies/',
-//   },
-// )
+
 
 function App() {
   return (

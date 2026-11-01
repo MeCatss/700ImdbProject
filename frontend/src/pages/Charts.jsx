@@ -9,7 +9,7 @@ const Charts = () => {
     const [totalgenres, settotalgenres] = useState([]);
     useEffect(() => {
         const gettotalgenres = async () => {
-        const res = await axios('https://700imdbproject-production.up.railway.app/stats/genres');
+        const res = await axios('https://700-imdb-project-backend.vercel.app/stats/genres');
         console.log(res.data);
         settotalgenres(res.data);
         };
@@ -28,7 +28,7 @@ const Charts = () => {
     const [decade, setdecade] = useState([]);
     useEffect(() => {
         const getDecade = async () => {
-        const res = await axios('https://700imdbproject-production.up.railway.app/stats/decades');
+        const res = await axios('https://700-imdb-project-backend.vercel.app/stats/decades');
         console.log(res.data, 123);
         setdecade(res.data);
         };
@@ -43,7 +43,7 @@ const Charts = () => {
     const [directors, setdirectors] = useState([]);
     useEffect(() => {
         const getDirectors = async () => {
-        const res = await axios('https://700imdbproject-production.up.railway.app/stats/topdirectors');
+        const res = await axios('https://700-imdb-project-backend.vercel.app/stats/topdirectors');
         // console.log(res.data, 22222222222);
         setdirectors(res.data);
         };
