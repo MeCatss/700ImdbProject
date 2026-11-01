@@ -1,8 +1,19 @@
-# This is just a project to learn again about git github data vscode python fastapi. #more to be added
-This website show the list of Top 700 IMDb Rated movies dataset, small charts, and the movie detail. You can browse and filter movies by genre, decade, and rating mostly higher than 7.5. Could be used to look for movie you like and its similar movies.
-This is a little project i make to help me relearn about github, Pandas, React, FastApi, Content-based recommendation using cosine similarity, JavaScript XML, Html, Css, and so on. 
+# CinemaTop
 
-This project is still in development many rooms for improvemenet.
-Dataset that used in this project : top 700 imdb movie analytic kaggle data
+A small project to relearn Git, GitHub, Python, FastAPI, React and data work.
 
-source: https://www.kaggle.com/datasets/saitejabandaruin/imdb-top-700-movies-2026-edition/data
+It shows the Top 700 IMDb rated movies, with small charts and a detail page per movie. You can browse and filter by genre, decade and rating (the dataset mostly contains movies rated 7.5 and above), and find similar movies using content-based recommendation (cosine similarity).
+
+## What I practiced
+- Pandas for cleaning and preparing the data
+- FastAPI for the backend API
+- React (JSX), HTML and CSS for the frontend
+- Content-based recommendation with cosine similarity
+- Git and GitHub workflow
+
+## Status
+Lots of room for improvement. though idk if i am gonna continue since its better to do another project.
+
+## Dataset
+Top 700 IMDb Movies analytics from Kaggle:
+https://www.kaggle.com/datasets/saitejabandaruin/imdb-top-700-movies-2026-edition/data
